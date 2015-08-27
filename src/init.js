@@ -1,5 +1,6 @@
 $(document).ready(function(){
   window.dancers = [];
+  window.gifs = [];
 
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
@@ -15,19 +16,57 @@ $(document).ready(function(){
      * A new object of the given type will be created and added
      * to the stage.
      */
-    var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
+    // var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
 
     // get the maker function for the kind of dancer we're supposed to make
-    var dancerMakerFunction = window[dancerMakerFunctionName];
+    // var dancerMakerFunction = window[dancerMakerFunctionName];
 
     // make a dancer with a random position
 
-    var dancer = dancerMakerFunction(
+    var dancer = new makeBlinkyDancer(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
+
+    window.dancers.push(dancer);
+
     $('body').append(dancer.$node);
+
   });
+
+  $('.addSquareDancerButton').on("click", function(){
+    var squareDancer = new makeSquareDancer(
+      $("body").height() * Math.random(),
+      $("body").width() * Math.random(),
+      Math.random() * 1000
+    );
+
+    window.dancers.push(squareDancer);
+
+    $('body').append(squareDancer.$node);
+    $(squareDancer.$node).prepend('<img src="img/banana.gif" />');
+  });
+
+  $('.addBigDancerButton').on("click", function(){
+    var bigDancer = new makeBigDancer(
+      $("body").height() * Math.random(),
+      $("body").width() * Math.random(),
+      Math.random() * 1000
+    );
+
+    window.dancers.push(bigDancer);
+
+    $('body').append(bigDancer.$node);
+  });
+
+  $('.lineUpDancerButton').on("click", function(){
+    for (var i = 0; i < window.dancers.length; i++) {
+      window.dancers[i].lineUp($("body").height()/2);
+    }
+  });
+
+
+
 });
 
