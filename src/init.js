@@ -12,25 +12,14 @@ $(document).ready(function(){
     $('body').append(dancer.$node);
   });
 
-  $('.addSquareDancerButton').on("click", function(){
-    var squareDancer = new makeSquareDancer(
+  $('.addBananaDancerButton').on("click", function(){
+    var bananaDancer = new makeBananaDancer(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      Math.random() * 1000
+      25
     );
-    window.dancers.push(squareDancer);
-    $('body').append(squareDancer.$node);
-    $(squareDancer.$node).prepend('<img src="img/banana.gif" />');
-  });
-
-  $('.addBigDancerButton').on("click", function(){
-    var bigDancer = new makeBigDancer(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
-      Math.random() * 1000
-    );
-    window.dancers.push(bigDancer);
-    $('body').append(bigDancer.$node);
+    window.dancers.push(bananaDancer);
+    $('body').append(bananaDancer.$node);
   });
 
   // line dancers up
